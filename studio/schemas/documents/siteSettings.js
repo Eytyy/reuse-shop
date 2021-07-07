@@ -2,13 +2,13 @@ export default {
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
-  __experimental_actions: ['update', 'publish' /* 'create', 'delete' */],
+  __experimental_actions: ['update', 'publish', 'create' /*, 'delete' */],
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      hidden: true,
+      // hidden: true,
     },
     {
       name: 'klaviyo_accountId',
