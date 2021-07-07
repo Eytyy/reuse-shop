@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useStaticQuery, graphql} from 'gatsby';
 import {debounce} from 'lodash';
@@ -21,83 +15,74 @@ import {
 import Header from '../header';
 import Navigation from '../navigation';
 import CartDrawer from '../cart/drawer';
-import Footer from '../footer';
 
 import {GlobalStyles, Container, LoadingWrapper} from './styles';
 import Logo from '../Logo';
 
-const Layout = ({children, location}) => {
-  const data = useStaticQuery(graphql`
-    query siteQuery {
-      settings: sanitySiteSettings(_id: {eq: "settings"}) {
-        phone
-        google_map
-        listId: klaviyo_newslettertId
-      }
-      mainMenu: sanityMenu(title: {eq: "Main"}) {
-        menuItems: _rawLinks(resolveReferences: {maxDepth: 2})
-      }
-      footerMenu: sanityMenu(title: {eq: "Footer"}) {
-        menuItems: _rawLinks(resolveReferences: {maxDepth: 2})
-      }
-      shopLocale: sanityShopLocale(_id: {eq: "shopLocale"}) {
-        adding: _rawAdding
-        addToCart: _rawAddtocart
-        cart_headline: _rawCartHeadline
-        cart_checkout: _rawCartCheckout
-        cart_continue: _rawCartContine
-        cart_empty: _rawCartEmpty
-        cart_notice_1: _rawCartNotice1
-        cart_notice_2: _rawCartNotice2
-        cart_subtotal: _rawCartSubtotal
-        jod: _rawJod
-        nostock: _rawNostock
-        preorder: _rawPreorder
-        usd: _rawUsd
-        waitlistbutton: _rawWaitlistbutton
-        waitlistmessage: _rawWaitlistmessage
-        filtersLabel: _rawFiltersLabel
-        filtersClear: _rawFiltersClear
-      }
-      siteLocale: sanitySiteLocale(_id: {eq: "siteLocale"}) {
-        email: _rawEmail
-        language: _rawLanguage
-        more: _rawMore
-        title_1: _rawTitle1
-        title_2: _rawTitle2
-        footer_headline: _rawFooterHeadline
-        footer_hours: _rawFooterOpeningHours
-        footer_callus: _rawCallusText
-        newsletter_btn_text: _rawNewsletterBtnText
-        newsletter_success: _rawNewsletterSuccess
-      }
-      productLocale: sanityProductLocale(_id: {eq: "productLocale"}) {
-        breakdown: _rawBreakdown
-        category: _rawCategory
-        colour: _rawColour
-        creations: _rawCreations
-        curations: _rawCurations
-        creationsNav: _rawCreationsNav
-        curationsNav: _rawCurationsNav
-        maker: _rawMaker
-        material: _rawMaterial
-        size: _rawSize
-      }
-      products: allSanityProduct(
-        filter: {deleted: {ne: true}, main: {slug: {current: {ne: null}}}}
-      ) {
-        nodes {
-          id
-          defaultPrice
-          allVariants: _rawVariants(resolveReferences: {maxDepth: 10})
-          variants {
-            variantId
-          }
-          main: _rawMain(resolveReferences: {maxDepth: 10})
+export const query = graphql`
+  query siteQuery {
+    settings: sanitySiteSettings(_id: {eq: "settings"}) {
+      phone
+      google_map
+      listId: klaviyo_newslettertId
+    }
+    mainMenu: sanityMenu(title: {eq: "Main"}) {
+      menuItems: _rawLinks(resolveReferences: {maxDepth: 2})
+    }
+    shopLocale: sanityShopLocale(_id: {eq: "shopLocale"}) {
+      adding: _rawAdding
+      addToCart: _rawAddtocart
+      cart_headline: _rawCartHeadline
+      cart_checkout: _rawCartCheckout
+      cart_continue: _rawCartContine
+      cart_empty: _rawCartEmpty
+      cart_notice_1: _rawCartNotice1
+      cart_notice_2: _rawCartNotice2
+      cart_subtotal: _rawCartSubtotal
+      jod: _rawJod
+      nostock: _rawNostock
+      preorder: _rawPreorder
+      usd: _rawUsd
+      waitlistbutton: _rawWaitlistbutton
+      waitlistmessage: _rawWaitlistmessage
+      filtersLabel: _rawFiltersLabel
+      filtersClear: _rawFiltersClear
+    }
+    siteLocale: sanitySiteLocale(_id: {eq: "siteLocale"}) {
+      email: _rawEmail
+      language: _rawLanguage
+      more: _rawMore
+      title_1: _rawTitle1
+      title_2: _rawTitle2
+      newsletter_btn_text: _rawNewsletterBtnText
+      newsletter_success: _rawNewsletterSuccess
+    }
+    productLocale: sanityProductLocale(_id: {eq: "productLocale"}) {
+      breakdown: _rawBreakdown
+      category: _rawCategory
+      colour: _rawColour
+      maker: _rawMaker
+      material: _rawMaterial
+      size: _rawSize
+    }
+    products: allSanityProduct(
+      filter: {deleted: {ne: true}, main: {slug: {current: {ne: null}}}}
+    ) {
+      nodes {
+        id
+        defaultPrice
+        allVariants: _rawVariants(resolveReferences: {maxDepth: 10})
+        variants {
+          variantId
         }
+        main: _rawMain(resolveReferences: {maxDepth: 10})
       }
     }
-  `);
+  }
+`;
+
+const Layout = ({children, location}) => {
+  const data = useStaticQuery(query);
 
   const [loading, setLoading] = useState(true);
   const {cartIsOpen, menuIsOpen, filterIsOpen} = useSiteState();
@@ -156,7 +141,7 @@ const Layout = ({children, location}) => {
     }
   }, [location?.pathname]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const appHeight = () => {
       const doc = document.documentElement;
       doc.style.setProperty('--app-height', `${window.innerHeight}px`);
@@ -225,19 +210,15 @@ const Layout = ({children, location}) => {
         <LoadingWrapper visible={loading}>
           <Logo />
         </LoadingWrapper>
-        <Navigation
-          activeSectionInfo={activeSectionInfo}
-          menuItems={data.mainMenu.menuItems}
-        />
+        {data?.mainMenu?.menuItems && (
+          <Navigation
+            activeSectionInfo={activeSectionInfo}
+            menuItems={data.mainMenu.menuItems}
+          />
+        )}
         <CartDrawer />
         <Container onScroll={handleScroll} visible={loading} ref={containerRef}>
           {children}
-          <Footer
-            listId={data?.settings?.listId}
-            phone={data?.settings?.phone}
-            map={data?.settings?.google_map}
-            menuItems={data?.footerMenu?.menuItems}
-          />
         </Container>
       </div>
     </>

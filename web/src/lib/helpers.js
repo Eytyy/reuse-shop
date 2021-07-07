@@ -17,7 +17,7 @@ export const getLinksColor = (type) => {
     default:
       return {
         main: colors.base,
-        secondary: colors.secondary,
+        secondary: colors.base,
       };
   }
 };

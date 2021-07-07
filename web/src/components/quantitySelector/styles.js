@@ -32,5 +32,5 @@ export const QuantityValue = styled.span`
 
 export const QuantityButton = styled(CartButton)`
   font-size: 18px;
-  color: #fff;
+  color: blue;
 `;

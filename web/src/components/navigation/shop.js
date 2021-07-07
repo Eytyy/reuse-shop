@@ -45,7 +45,7 @@ const ShopNavigation = ({activeSectionInfo}) => {
         {count > 0 && <CartDot />}
       </CartToggleButton>
 
-      <a href='https://rumman-shop.myshopify.com/account'>
+      <a href='https://headless-eytyy.myshopify.com/account'>
         <NavIcon linksColor={linksColor}>
           <AiOutlineUser />
         </NavIcon>

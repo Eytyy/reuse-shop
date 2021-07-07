@@ -12,26 +12,6 @@ export default {
       readOnly: true,
     },
     {
-      name: 'curations',
-      title: 'Curations Headline',
-      type: 'translation',
-    },
-    {
-      name: 'creations',
-      title: 'Creations Headline',
-      type: 'translation',
-    },
-    {
-      name: 'curationsNav',
-      title: 'Curations Navigation Title',
-      type: 'translation',
-    },
-    {
-      name: 'creationsNav',
-      title: 'Creations Navigation Title',
-      type: 'translation',
-    },
-    {
       name: 'size',
       title: 'Size',
       type: 'translation',

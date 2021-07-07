@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {at, rest_form_el_style} from '../../styles/helpers';
+import {at} from '../../styles/helpers';
 import {font_styles} from '../../styles/typography';
 import {
   breakpoints,
@@ -77,7 +77,7 @@ export const ShopNavCol = styled.div`
 
   h2 {
     ${font_styles.display_2}
-    color: ${colors.secondary};
+    color: ${colors.base};
     margin: 0;
   }
 
@@ -139,47 +139,6 @@ export const ShopNavColInner = styled.div`
   }
 `;
 
-export const ShopTypeNav = styled.div`
-  position: relative;
-  z-index: 12;
-  .divider {
-    width: 100%;
-    border-bottom: 1px solid currentColor;
-    margin: 0 0 ${`${spacing_base.default}px`};
-    padding: 0 0 ${`${spacing_base.default}px`};
-  }
-  margin-bottom: ${spacing.mobile};
-  button {
-    font-size: 1em;
-    padding: 0;
-  }
-  ${at(breakpoints.laptop_13)} {
-    display: flex;
-    align-items: center;
-    margin: 0 0 0;
-    .divider {
-      width: 1px;
-      border-right: 1px solid currentColor;
-      border-bottom: none;
-      height: 18px;
-      margin: 0 9px;
-    }
-  }
-`;
-
-export const ShopTypeButton = styled.button`
-  ${rest_form_el_style}
-  text-transform: capitalize;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-  opacity: 0.5;
-  transition: opacity 200ms linear;
-  &.active {
-    opacity: 1;
-  }
-`;
-
 export const SortingFiltersWrapper = styled.div``;
 
 export const ShopDescCol = styled.div`
@@ -219,7 +178,3 @@ export const ProductsList = styled.div`
 export const EmptyState = styled(ProductsList)``;
 
 export const ProductsListItem = styled.div``;
-
-export const Description = styled.div`
-  color: ${colors.secondary};
-`;

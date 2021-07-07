@@ -29,16 +29,6 @@ export default {
       title: 'Headline',
       type: 'localeText',
     },
-    {
-      name: 'curations',
-      title: 'Curations',
-      type: 'localeText',
-    },
-    {
-      name: 'creations',
-      title: 'Creations',
-      type: 'localeText',
-    },
   ],
   preview: {
     select: {

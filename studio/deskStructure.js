@@ -18,7 +18,7 @@ const excluded = [
   'maker',
   'category',
   'front',
-  'menu',
+  // 'menu',
   'page',
   'basicPage',
   'shopSettings',

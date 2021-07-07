@@ -29,11 +29,11 @@ export default {
       ],
       validation: (Rule) =>
         Rule.custom((blocks, fields) => {
-          if (blocks.length < 4) {
-            return `Minimum 4 products.`;
+          if (blocks.length < 3) {
+            return `Minimum 3 products.`;
           }
-          if (blocks.length % 4 !== 0) {
-            return `Number of products need to be multiples of four; 4, 8, 12 ...etc.`;
+          if (blocks.length % 3 !== 0) {
+            return `Number of products need to be multiples of 3; 3, 9, 12 ...etc.`;
           }
           return true;
         }),

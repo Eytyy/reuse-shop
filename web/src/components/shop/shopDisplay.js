@@ -11,7 +11,6 @@ import {useSectionsContext} from '../../context/sectionsContext';
 import SectionObserver from '../sectionObserver';
 import {useLocale} from '../../context/localeProvider';
 
-import MultilineHeadline from '../multilineHeadline';
 import {MobileFiltersToggle} from '../filters/styles';
 import {MdClose, MdFilterList} from 'react-icons/md';
 
@@ -22,21 +21,14 @@ import {
   ProductsListItem,
   ShopNavCol,
   ShopNavColInner,
-  ShopTypeNav,
   ShopDescCol,
-  Description,
-  ShopTitle,
-  ShopTypeButton,
   EmptyState,
 } from './styles';
 import {breakpoints} from '../../styles/vars';
 
 const ShopDisplay = ({
   headline,
-  description,
   image,
-  setType,
-  type,
   visibleContent,
   sortProducts,
   updatePriceFilter,
@@ -99,46 +91,6 @@ const ShopDisplay = ({
                 desktopNavColBottom={desktopNavColBottom}
                 inViewport={inViewport}
               >
-                <ShopTitle>
-                  <MultilineHeadline title={locale?.[type]?.[lang]} />
-                </ShopTitle>
-
-                <ShopTypeNav>
-                  <ShopTypeButton
-                    type='button'
-                    className={type === 'creations' ? 'active' : ''}
-                    onClick={() => {
-                      scrollToProductsWrapper();
-                      setType('creations');
-                    }}
-                  >
-                    <MultilineHeadline
-                      dontBreak
-                      as='span'
-                      title={
-                        locale?.creationsNav?.[lang] || locale?.creationsNav?.en
-                      }
-                    />
-                  </ShopTypeButton>
-                  <div className='divider' />
-                  <ShopTypeButton
-                    type='button'
-                    className={type === 'curations' ? 'active' : ''}
-                    onClick={() => {
-                      scrollToProductsWrapper();
-                      setType('curations');
-                    }}
-                  >
-                    <MultilineHeadline
-                      dontBreak
-                      as='span'
-                      title={
-                        locale?.curationsNav?.[lang] || locale?.curationsNav?.en
-                      }
-                    />
-                  </ShopTypeButton>
-                </ShopTypeNav>
-
                 <MobileFiltersToggle onClick={toggleFilters}>
                   <span>{locale?.filtersLabel?.[lang] || 'Filters'}</span>{' '}
                   {filterIsOpen ? <MdClose /> : <MdFilterList />}
@@ -179,9 +131,7 @@ const ShopDisplay = ({
               </EmptyState>
             )}
 
-            <ShopDescCol>
-              <Description>{description[lang]}</Description>
-            </ShopDescCol>
+            <ShopDescCol></ShopDescCol>
           </ShopContentWrapper>
         </ShopWrapper>
       </SectionObserver>

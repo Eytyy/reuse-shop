@@ -50,7 +50,11 @@ const HeaderModule = (props) => {
                 </PageHeadline>
               ) : (
                 <PageHeadline>
-                  <MultilineHeadline dontBreak as={'div'} title={title[lang]} />
+                  <MultilineHeadline
+                    dontBreak
+                    as={'div'}
+                    title={title?.[lang]}
+                  />
                 </PageHeadline>
               )}
               {headerText?.body && (

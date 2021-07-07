@@ -64,7 +64,7 @@ const Full = ({id, headline, body, lang, image, linkTo}) => {
             <MultilineHeadline title={headline[lang]} />
           </Headline>
         )}
-        {body[lang] ? (
+        {body?.[lang] ? (
           linkTo ? (
             <LinkWrapper {...linkTo}>
               <Body>

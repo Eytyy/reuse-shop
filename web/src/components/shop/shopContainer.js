@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useProducts} from '../../context/siteContext';
 import ShopDisplay from './shopDisplay';
 
@@ -6,19 +6,8 @@ const ShopContainer = ({data}) => {
   const {shop} = data;
   const {products} = useProducts();
 
-  const [type, setType] = useState('creations');
-
-  const filterContentByType = useCallback(() => {
-    return (
-      products?.nodes?.filter(({main}) => {
-        return main.type === type;
-      }) || []
-    );
-  }, [products.nodes, type]);
-
   // const filterShape = {name: '', values: [{id: '', name: ''}]};
   // exmaple {name: 'maker', values: [{id: 1, name: 'tala'},{id: 2, name: 'maha'}]}
-  const [visibleProducts, setVisibleProducts] = useState(filterContentByType);
 
   const [visibleContent, setVisibleContent] = useState([]);
 
@@ -37,11 +26,6 @@ const ShopContainer = ({data}) => {
   function clearFilters() {
     setFilters(initialFiltersState);
   }
-
-  useEffect(() => {
-    const visible = filterContentByType();
-    setVisibleProducts(visible);
-  }, [type, filterContentByType]);
 
   // Filter Content
   useEffect(() => {
@@ -65,7 +49,7 @@ const ShopContainer = ({data}) => {
 
     const filtersKeys = Object.keys(filters);
 
-    const filtered = visibleProducts.filter((product) => {
+    const filtered = products?.nodes?.filter((product) => {
       return filtersKeys.every((key) => {
         if (key === 'priceRange') {
           return filterContentByPrice(product);
@@ -81,7 +65,7 @@ const ShopContainer = ({data}) => {
     });
 
     setVisibleContent(filtered);
-  }, [filters, visibleProducts]);
+  }, [filters, products.nodes]);
 
   function updatePriceFilter(price) {
     setFilters((prevState) => ({
@@ -101,7 +85,7 @@ const ShopContainer = ({data}) => {
       return false;
     });
     setIsFiltersActive(filtersActiveState);
-  }, [filters, filterContentByType]);
+  }, [filters]);
 
   function updateFilters(e) {
     const {name, value} = e.target;
@@ -148,7 +132,6 @@ const ShopContainer = ({data}) => {
   }
 
   const {headline, image, displayTitle} = shop;
-  const description = shop[type];
 
   return (
     <ShopDisplay
@@ -159,10 +142,7 @@ const ShopContainer = ({data}) => {
       updatePriceFilter={updatePriceFilter}
       updateFilters={updateFilters}
       visibleContent={visibleContent}
-      setType={setType}
-      type={type}
       image={image}
-      description={description}
       headline={headline}
       clearFilters={clearFilters}
     />

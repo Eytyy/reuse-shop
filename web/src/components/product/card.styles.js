@@ -41,7 +41,7 @@ export const ProductCardTitle = styled.h2`
 
 export const ProductPrice = styled.div`
   ${font_styles.block_title};
-  color: ${colors.secondary};
+  color: ${colors.base};
 `;
 
 export const ProductCardContent = styled.div`

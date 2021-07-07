@@ -96,7 +96,7 @@ export const QuantityValue = styled.span`
 `;
 
 export const ItemPrice = styled.div`
-  color: ${colors.secondary};
+  color: ${colors.base};
   .curr {
     margin-right: 3px;
   }

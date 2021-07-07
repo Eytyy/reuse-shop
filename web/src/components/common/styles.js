@@ -4,7 +4,7 @@ import {colors} from '../../styles/vars';
 export const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
-  color: ${colors.secondary};
+  color: ${colors.base};
   margin: 6px 0px;
   font-size: 12px;
   .box {
@@ -17,7 +17,7 @@ export const CheckboxWrapper = styled.div`
     border: 1px solid currentColor;
     border-radius: 2px;
     background-color: ${(props) =>
-      props.checked ? colors.secondary : 'transparent'};
+      props.checked ? colors.base : 'transparent'};
     margin: 0 6px 0 0;
     transition: background-color 100ms ease-in-out;
     svg {
@@ -43,8 +43,7 @@ export const RadioboxWrapper = styled(CheckboxWrapper)`
     border-radius: 100%;
     background: #fff;
     .circle {
-      background-color: ${(props) =>
-        props.checked ? colors.secondary : '#FFF'};
+      background-color: ${(props) => (props.checked ? colors.base : '#FFF')};
       width: 90%;
       height: 90%;
       display: block;

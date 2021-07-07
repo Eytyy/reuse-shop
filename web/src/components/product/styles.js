@@ -136,7 +136,7 @@ export const RecommendedProductsWrapper = styled.aside`
 
 export const BreakdownLink = styled(LinkButton)`
   padding: 0 0 6px;
-  color: ${colors.secondary};
+  color: ${colors.base};
   font-size: 1em;
   ${at(breakpoints.laptop_13)} {
     font-size: 1em;

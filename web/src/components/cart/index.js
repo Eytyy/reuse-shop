@@ -42,7 +42,7 @@ const Cart = ({empty = false}) => {
           <CartInnerContainer>
             <CartContentWrapper>
               <CartContent>
-                {lineItems.map((item, index) => (
+                {lineItems?.map((item, index) => (
                   <CartItem
                     key={item.id + item.quantity}
                     {...item}

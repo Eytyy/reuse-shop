@@ -4,7 +4,7 @@ import {InternalLink, ExternalLink, CustomLink} from '../link';
 
 const MenuLink = ({route, externalLink, page, title, cb = () => {}}) => {
   const {lang} = usePageContext();
-  const localizedTitle = title[lang] || title.en || 'Untitled';
+  const localizedTitle = title?.[lang] || title.en || 'Untitled';
 
   if (page) {
     return (

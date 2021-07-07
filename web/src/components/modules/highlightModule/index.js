@@ -56,12 +56,12 @@ const HighlightModule = (props) => {
       {isFirst && <BackDrop />}
       <Wrapper visible={visible} dontPad={isFirst}>
         <ContentWrapper>
-          {headline[lang] && (
+          {headline?.[lang] && (
             <Headline transparency={transparency}>
               <PortableText blocks={headline[lang]} />
             </Headline>
           )}
-          {body[lang] && (
+          {body?.[lang] && (
             <Body>
               <PortableText blocks={body[lang]} />
             </Body>

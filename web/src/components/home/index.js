@@ -8,7 +8,7 @@ const Home = ({data}) => {
   return (
     <>
       <HeaderModule location='home' {...header} />
-      {content.map((module, index) => (
+      {content?.map((module, index) => (
         <PageModule {...module} key={module._key} index={index} />
       ))}
     </>

@@ -19,7 +19,7 @@ export const SideHeaderColumn = styled.header`
   position: relative;
   h2 {
     ${font_styles.display_2}
-    color: ${colors.secondary};
+    color: ${colors.base};
     display: none;
   }
   ${at(breakpoints.tablet)} {

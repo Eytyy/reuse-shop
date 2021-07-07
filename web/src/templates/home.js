@@ -16,7 +16,7 @@ const HomeTemplate = (props) => {
 
   return (
     <>
-      <SEO title='rumman' lang={pageContext.language} />
+      <SEO title='reuse' lang={pageContext.language} />
       <Home data={homeData} />
     </>
   );

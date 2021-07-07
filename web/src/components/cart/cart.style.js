@@ -50,7 +50,7 @@ const CartDrawerBox = styled.div`
 `;
 
 export const DrawerBackground = styled(CartDrawerBox)`
-  background: ${colors.base};
+  background: ${colors.secondary};
   z-index: 20;
 `;
 
@@ -61,7 +61,7 @@ export const Drawer = styled(CartDrawerBox)`
     props.empty ? '80px auto' : '40px auto min-content'};
   grid-gap: ${gridGap.mobile};
   padding: ${wrapper_padding.mobile};
-  color: ${colors.secondary};
+  color: ${colors.base};
 
   ${at(breakpoints.tablet)} {
     grid-template-columns: ${(props) =>
@@ -120,7 +120,6 @@ export const CartTitle = styled.h3`
   grid-column: 2/4;
   margin: 0;
   ${font_styles.display_2};
-  color: hsl(156, 19%, 75%);
   font-size: 16px;
   line-height: 1.2;
   ${at(breakpoints.tablet)} {

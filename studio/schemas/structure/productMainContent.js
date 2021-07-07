@@ -77,18 +77,6 @@ export default {
       fieldset: 'availability',
     },
     {
-      name: 'type',
-      title: 'Type',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-      options: {
-        list: [
-          {title: 'Curation', value: 'curations'},
-          {title: 'Creation', value: 'creations'},
-        ],
-      },
-    },
-    {
       name: 'maker',
       title: 'Maker',
       type: 'reference',
@@ -133,7 +121,6 @@ export default {
           title: 'Video',
         },
       ],
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',

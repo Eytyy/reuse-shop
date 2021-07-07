@@ -1,9 +1,9 @@
 export const colors = {
-  base: 'hsl(200, 21%, 34%)',
-  secondary: 'hsl(156, 19%, 75%)',
-  links: 'hsl(10, 75%, 70%)',
+  base: 'blue',
+  secondary: '#ffa928',
+  links: 'blue',
   shades: {
-    baseTransparent: 'hsla(200, 21%, 34%, 90%)',
+    baseTransparent: '#ffa928',
   },
 };
 

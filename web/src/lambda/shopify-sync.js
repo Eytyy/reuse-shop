@@ -184,15 +184,8 @@ export const handler = async (event) => {
         data: JSON.stringify(payload),
       });
 
-      const {
-        metafield,
-        title,
-        id,
-        handle,
-        totalVariants,
-        images,
-        variants,
-      } = product.data.data.node;
+      const {metafield, title, id, handle, totalVariants, images, variants} =
+        product.data.data.node;
 
       const metaCompare = {
         id,
