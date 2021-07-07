@@ -1,0 +1,127 @@
+
+{% style %}
+  {%- capture base_font -%}
+    {%- if request.locale.iso_code == 'en' -%}
+      Portrait
+    {%- else -%}
+      Mitra
+    {%- endif -%}
+  {%- endcapture -%}
+  
+  {%- assign type_header_base_size = 16 -%}
+  {%- assign type_base_size = 16 -%}
+
+  {%- assign header_font = base_font -%}
+  {%- assign base_font_bolder = base_font | font_modify: 'weight', 'normal' -%}
+  {%- assign base_font_bold = base_font | font_modify: 'weight', 'normal' -%}
+  {%- assign base_font_italic = base_font | font_modify: 'style', 'normal' -%}
+  {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'normal' -%}
+
+  :root {
+    --color-primary: {{ settings.color_primary }};
+    --color-secondary: {{ settings.color_secondary }};
+    --color-tertiary: {{ settings.color_tertiary }};
+
+    --color-text: {{ settings.color_primary }};
+    --color-text-rgb: {{ settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+    --color-body-text: {{ settings.color_primary }};
+    
+    --color-field: {{ settings.color_primary }};
+    --color-field-rgb: {{ settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+    
+    --color-error: {{ settings.color_primary }};
+    --color-sucess: {{ settings.color_primary }};
+
+    --color-title: {{ settings.color_primary }};
+
+    --color-links: {{ settings.color_primary }};
+    --color-links-focus: {%- include 'adaptive-color' with settings.color_primary as color -%};
+
+    --color-btn-primary: transparent;
+    --color-btn-primary-darker: {{ settings.color_primary | color_darken: 10 }};
+    --color-btn-primary-text: {{ settings.color_primary }};
+
+
+    --color-btn-secondary: settings.color_primary;
+    --color-btn-secondary-darker: {{ settings.color_primary | color_darken: 10 }};
+    --color-btn-secondary-text: {{ settings.color_primary }};
+
+    --color-blankstate: {{ settings.color_primary | color_modify: 'alpha', 0.35 }};
+    --color-blankstate-border: {{ settings.color_primary | color_modify: 'alpha', 0.2 }};
+    --color-blankstate-background: {{ settings.color_primary | color_modify: 'alpha', 0.1 }};
+
+    --color-text-focus: {%- include 'adaptive-color' with settings.color_primary as color -%};
+    --color-overlay-text-focus: {%- include 'adaptive-color' with settings.color_primary as color -%};
+    --color-btn-primary-focus: {%- include 'adaptive-color' with settings.color_primary as color -%};
+  
+    --color-body: {{ settings.color_primary }};
+    --color-logo: {{ settings.color_primary }};
+
+    --color-bg: {{ settings.color_background }};
+    --color-bg-rgb: {{ settings.color_background | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+    --color-bg-alt: {{ settings.color_background | color_modify: 'alpha', 0.05 }};
+    --color-bg-currency-selector: {{ settings.color_background | color_modify: 'alpha', 0.2 }};
+
+    {%- assign image_overlay_opacity = settings.image_overlay_opacity | divided_by: 100.00 -%}
+    --opacity-image-overlay: {{ image_overlay_opacity }};
+
+    {%- comment -%}
+      Based on the image overlay opacity, either lighten or darken the image on hover
+    {%- endcomment -%}
+    {%- if image_overlay_opacity > 0.85 -%}
+      {%- assign image_overlay_opacity_hover = image_overlay_opacity | minus: 0.3 -%}
+    {%- else -%}
+      {%- assign image_overlay_opacity_hover = image_overlay_opacity | plus: 0.4 -%}
+    {%- endif -%}
+    --hover-overlay-opacity: {{ image_overlay_opacity_hover | at_most: 1 }};
+
+    --color-border: {{ settings.color_primary }};
+    --color-border-form: {{ settings.color_primary }};
+    --color-border-form-darker: {{ settings.color_primary | color_darken: 10}};
+
+    --svg-select-icon: url({{ "ico-select.svg" | asset_url }});
+
+    --font-weight-body--bold: normal;
+    --font-weight-body--bolder: normal;
+
+    --font-stack-header: {{ header_font }};
+
+    --font-stack-body: {{ base_font }};
+
+    --font-size-header: {{ type_header_base_size }};
+
+    --font-size-base: {{ type_base_size }};
+
+    --wrapper-spacing-mobile: 30px;
+    --wrapper-spacing-tablet: 40px;
+    --wrapper-spacing-desktop: 72px;
+
+    --headerHeight--mobile: 40px;
+    --headerHeight--desktop: 40px;
+
+    --spacing-mobile: 36px;
+    --spacing-tablet: 45px;
+    --spacing-desktop: 72px;
+
+    --gap-mobile: 15px;
+    --gap-tablet: 20px;
+    --gap-desktop: 40px;
+
+    {% comment %} Create an appropriate poster background color based on background color and brightness {% endcomment %}
+    {%- assign color_body_bg = settings.color_body_bg -%}
+    {%- assign color_body_bg_brightness = color_body_bg | color_brightness -%}
+    {%- if color_body_bg_brightness <= 26 -%}
+      {%- assign background_color_poster = color_body_bg | color_lighten: 10 -%}
+    {%- elsif color_body_bg_brightness <= 65 -%}
+      {%- assign background_color_poster = color_body_bg | color_lighten: 5 -%}
+    {%- else -%}
+      {%- assign background_color_poster = color_body_bg | color_darken: 5 -%}
+    {%- endif -%}
+
+    --color-video-bg: {{ background_color_poster }};
+
+    {% comment %} Image placeholder {% endcomment %}
+    --global-color-image-loader-primary: {{ settings.color_primary | color_modify: 'alpha', 0.06 }};
+    --global-color-image-loader-secondary: {{ settings.color_primary | color_modify: 'alpha', 0.12 }};
+  }
+{% endstyle %}

@@ -1,0 +1,6 @@
+development:
+  password: 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
+  theme_id: "122907001005"
+  store: rumman-shop.myshopify.com
+  ignore_files:
+  - config/settings_data.json

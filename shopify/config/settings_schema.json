@@ -1,0 +1,53 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Debut",
+    "theme_author": "Shopify",
+    "theme_version": "17.7.0",
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/using-themes\/themes-by-shopify\/debut",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
+  },
+  {
+    "name": {
+      "en": "Colors"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "en": "Palette"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": {
+          "en": "Primary"
+        },
+        "default": "#EC8C79"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": {
+          "en": "Secondary"
+        },
+        "default": "#445D69"
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Main Image"
+    },
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "mainImage",
+        "label": {
+          "en": "Main image"
+        }
+      }
+    ]
+  }
+]

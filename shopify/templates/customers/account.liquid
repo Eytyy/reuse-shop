@@ -1,0 +1,92 @@
+<div class="section-inner">
+  <div class="section-header">
+    <h1 class='page-title'>{{ 'customer.account.title' | t }}</h1>
+    <div class="back-home-btn">
+      <a class="site-header__logo-link" href="{{ routes.root_url }}">
+        <span class="icon icon--close">
+          {% include 'icon-close' %}
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="section-content section-content--myaccount">
+    <div class="section-content__header">
+      <h2 class="section-title">{{ 'customer.orders.title' | t }}</h2>
+    </div>
+    <div class="myaccount__order-history">
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+
+          <section class="table table--orders">
+            <header class="table__header">
+              <div>{{ 'customer.orders.order_number' | t }}</div>
+              <div>{{ 'customer.orders.date' | t }}</div>
+              <div>{{ 'customer.orders.payment_status' | t }}</div>
+              <div>{{ 'customer.orders.fulfillment_status' | t }}</div>
+              <div>{{ 'customer.orders.total' | t }}</div>
+            </header>
+            <div class="table__content">
+              {% for order in customer.orders %}
+              <div class="table__content__row">
+                <div class="table__content__row__item table__content__row__item--order-number">
+                  <div class="label">{{ 'customer.orders.order_number' | t }}</div>
+                  <div class="value">
+                    <a href="{{ order.customer_url }}"  aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+                  </div>
+                </div>
+                <div class="table__content__row__item">
+                  <div class="label">{{ 'customer.orders.date' | t }}</div>
+                  <div class="value">{{ order.created_at | time_tag: format: 'date' }}</div>
+                </div>
+                <div class="table__content__row__item">
+                  <div class="label">{{ 'customer.orders.payment_status' | t }}</div>
+                  <div class="value">{{ order.financial_status_label }}</div>
+                </div>
+                <div class="table__content__row__item">
+                  <div class="label">{{ 'customer.orders.fulfillment_status' | t }}</div>
+                  <div class="value">{{ order.fulfillment_status_label }}</div>
+                </div>
+                <div class="table__content__row__item">
+                  <div class="label">{{ 'customer.orders.total' | t }}</div>
+                  <div class="value">{{ order.total_price | money }}</div>
+                </div>
+                </div>
+              {% endfor %}
+              </div>
+          </section>
+
+        {% else %}
+
+          <p>{{ 'customer.orders.none' | t }}</p>
+
+        {% endif %}
+        {%- if paginate.pages > 1 -%}
+          {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+      {% endpaginate %}
+    </div>
+    <div class="myaccount__account-details">
+      <div class="section__block">
+        <h2 class="section__block__title">
+          {{ 'customer.account.details' | t }}
+        </h2>
+        <div class="section__block__content">
+          {{ customer.default_address | format_address }}
+        </div>
+        <div class="btn-group">
+          <a href="{{ routes.account_addresses_url }}" class="btn btn--small">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+          <span class="icon icon--arrow">
+            {% include 'icon-arrow-right' %}
+          </span>
+        </div>
+        <div class="btn-group">
+          {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          <span class="icon icon--arrow">
+            {% include 'icon-arrow-right' %}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

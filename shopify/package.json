@@ -1,0 +1,17 @@
+{
+  "name": "shopify",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "deploy": "node scripts/deploy.js",
+    "deploy:production": "node scripts/deploy.js -- --env=production --allowLive=true",
+    "watch": "node scripts/watch.js"
+  },  
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@shopify/themekit": "^1.1.7"
+  }
+}
