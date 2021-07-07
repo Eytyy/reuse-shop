@@ -2,22 +2,14 @@
 
 Starter kit for building an online shop using Gatsby, Sanity, and Shopify; a spin-off from [Midway](https://github.com/ctrl-alt-del-world/midway)
 
-## Studio/
+**This project is under active development; I'm repurposing the source code of a project I recently worked on and will be stripping it down to function as a starter. The documentation for the project should be updated soon.**
 
-- Run sanity init and create a new project.
-- Update the studio name in studio/package.json.
+## studio/
 
-## Web/
+## web/
 
-1. Rename env.example to .env by typing mv env.example .env in your terminal and update the values.
-2. Update site name in web/gatsby-config.js
-
-## Shopify
+## shopify/
 
 ## Features
 
 ## Components
-
-# Credits
-
-This repo is a spin-off of https://github.com/ctrl-alt-del-world/midway
